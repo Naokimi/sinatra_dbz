@@ -3,5 +3,9 @@
 require 'sinatra'
 
 get '/' do
-  erb :index
+  if Time.now.day < 15
+    erb :result
+  else
+    erb :index
+  end
 end
