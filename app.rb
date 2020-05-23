@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'config/application'
+require 'rest-client'
 require 'sinatra'
 require 'sinatra/reloader'
 require 'sinatra/activerecord'
@@ -13,4 +14,10 @@ get '/' do
     @team_b = Character.where(team: 'B')
     erb :index
   end
+end
+
+get '/join_the_fight' do
+  response = RestClient.get('https://dragon-ball-api.herokuapp.com/api/character')
+  JSON.parse(response.body).map { |hash| hash['name'] }
+  erb :new
 end
