@@ -18,6 +18,7 @@ end
 
 get '/join_the_fight' do
   response = RestClient.get('https://dragon-ball-api.herokuapp.com/api/character')
-  JSON.parse(response.body).map { |hash| hash['name'] }
+  @options = JSON.parse(response.body).sample(3)
+  @correct = @options.sample
   erb :new
 end

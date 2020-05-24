@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="section has-text-centered">
+    <h1 class="title">Join the fight!</h1>
+    <!-- <label for="user"></label>
+    <input type="text" class="user"> -->
+    <h2 class="subtitle">Select the right character</h2>
+    <p><span class="tag is-dark is-large"><%= @correct['name'] %></span></p>
+  </div>
+  <div class="columns">
+    <% @options.each do |option| %>
+      <div class="column">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="<%= option['image'] %>" alt="">
+            </figure>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
