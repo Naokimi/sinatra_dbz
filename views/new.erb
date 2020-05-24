@@ -1,22 +1,36 @@
 <div class="container">
-  <div class="section has-text-centered">
-    <h1 class="title">Join the fight!</h1>
-    <!-- <label for="user"></label>
-    <input type="text" class="user"> -->
-    <h2 class="subtitle">Select the right character</h2>
-    <p><span class="tag is-dark is-large"><%= @correct['name'] %></span></p>
-  </div>
-  <div class="columns">
-    <% @options.each do |option| %>
-      <div class="column">
-        <div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="<%= option['image'] %>" alt="">
-            </figure>
+  <form action="/join_the_fight">
+    <div class="has-text-centered">
+      <h1 class="title">Join the fight!</h1>
+      <input class="input is-rounded" name="character[user]" type="text" placeholder="Your name" style="max-width: 400px;">
+      <h2 class="subtitle">Select the right character</h2>
+      <p><span class="tag is-dark is-large"><%= @correct['name'] %></span></p>
+    </div>
+    <div class="columns">
+      <% @options.each_with_index do |option, i| %>
+        <div class="column">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <label for="<%= i %>" class="label-for-check" >
+                  <input type="radio" name="character[url]" id="<%= i %>" value="<%= option['image'] %>"  class="check-with-label" />
+                  <img src="<%= option['image'] %>" />
+                </label>
+              </figure>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+    <div class="has-text-centered">
+      <input type="submit" value="Submit" class="button is-primary">
+    </div>
+  </form>
 </div>
+
+<style>
+  .check-with-label:checked + img {
+    border-color: red;
+    border-style: solid;
+  }
+</style>
