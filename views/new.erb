@@ -1,10 +1,16 @@
 <div class="container">
-  <form action="/join_the_fight">
+  <% if @char.errors.present? %>
+    <p>
+      Unable to join the fight. Please review following errors:<br/>
+      <strong><%= @char.errors.full_messages.join(' and ') %></strong>
+    </p>
+  <% end %>
+  <form action="/join_the_fight" method="POST" >
     <div class="has-text-centered">
       <h1 class="title">Join the fight!</h1>
-      <input class="input is-rounded" name="character[user]" type="text" placeholder="Your name" style="max-width: 400px;">
+      <input class="input is-rounded" name="<%= params[:user] %>" type="text" placeholder="Your name" style="max-width: 400px;">
       <h2 class="subtitle">Select the right character</h2>
-      <p><span class="tag is-dark is-large"><%= @correct['name'] %></span></p>
+      <input class="input is-rounded" name="<%= params[:name] %>" type="text" placeholder="Your name" style="max-width: 400px;" value="<%= @correct['name'] %>" disabled>
     </div>
     <div class="columns">
       <% @options.each_with_index do |option, i| %>
@@ -13,7 +19,7 @@
             <div class="card-image">
               <figure class="image is-4by3">
                 <label for="<%= i %>" class="label-for-check" >
-                  <input type="radio" name="character[url]" id="<%= i %>" value="<%= option['image'] %>"  class="check-with-label" />
+                  <input type="radio" name="<%= params[:url] %>" id="<%= i %>" value="<%= option['image'] %>"  class="check-with-label" />
                   <img src="<%= option['image'] %>" />
                 </label>
               </figure>

@@ -4,6 +4,7 @@ class CreateCharacters < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :team
       t.string :user
+      t.string :url
       t.string :ip_address
       t.timestamps null: false
     end

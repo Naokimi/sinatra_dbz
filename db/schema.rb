@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2020_05_23_220000) do
     t.string "name"
     t.string "team"
     t.string "user"
+    t.string "url"
     t.string "ip_address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
